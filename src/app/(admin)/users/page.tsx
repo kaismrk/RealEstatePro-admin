@@ -64,8 +64,8 @@ export default function UsersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Users</h1>
-        <p className="text-sm text-gray-500">{total} users total</p>
+        <h1 className="text-2xl font-bold text-neutral-900">Users</h1>
+        <p className="text-sm text-neutral-500">{total} users total</p>
       </div>
 
       {successMsg && (
@@ -76,7 +76,7 @@ export default function UsersPage() {
 
       {/* Search */}
       <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
         <Input
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
@@ -93,18 +93,18 @@ export default function UsersPage() {
           {isLoading ? (
             <div className="space-y-2 p-4">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="h-12 animate-pulse rounded bg-gray-100" />
+                <div key={i} className="h-12 animate-pulse rounded bg-neutral-100" />
               ))}
             </div>
           ) : users.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-40 items-center justify-center text-sm text-neutral-500">
               No users found
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                     <th className="px-4 py-3">Email</th>
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Country</th>
@@ -113,11 +113,11 @@ export default function UsersPage() {
                     <th className="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-neutral-100">
                   {users.map((user: UserItem) => (
-                    <tr key={user.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-gray-900">{user.email}</td>
-                      <td className="px-4 py-3 text-gray-600">
+                    <tr key={user.id} className="hover:bg-neutral-50">
+                      <td className="px-4 py-3 font-medium text-neutral-900">{user.email}</td>
+                      <td className="px-4 py-3 text-neutral-600">
                         {[user.first_name, user.last_name].filter(Boolean).join(" ") || "—"}
                       </td>
                       <td className="px-4 py-3">
@@ -130,7 +130,7 @@ export default function UsersPage() {
                           <Badge variant="destructive">Inactive</Badge>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-gray-500">
+                      <td className="px-4 py-3 text-neutral-500">
                         {format(new Date(user.created_at), "MMM d, yyyy")}
                       </td>
                       <td className="px-4 py-3">
@@ -167,7 +167,7 @@ export default function UsersPage() {
       {/* Pagination */}
       {total > size && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Page {page} of {Math.ceil(total / size)}
           </p>
           <div className="flex gap-2">
@@ -187,10 +187,10 @@ export default function UsersPage() {
           <DialogHeader>
             <DialogTitle>Reset Password</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             Reset password for <strong>{confirmReset?.email}</strong>?
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-neutral-500">
             Per FINDING-009: the temporary password is not returned in the response. You must deliver it to the user via a secure out-of-band channel.
           </p>
           <DialogFooter>
@@ -208,7 +208,7 @@ export default function UsersPage() {
           <DialogHeader>
             <DialogTitle>Revoke All Sessions</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             Revoke all active sessions for <strong>{confirmRevoke?.email}</strong>? They will be signed out from all devices.
           </p>
           <DialogFooter>

@@ -28,10 +28,10 @@ export default function BoostsPage() {
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Boost Monitor</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Boost Monitor</h1>
         <div className="animate-pulse space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-14 rounded bg-gray-100" />
+            <div key={i} className="h-14 rounded bg-neutral-100" />
           ))}
         </div>
       </div>
@@ -41,8 +41,8 @@ export default function BoostsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Boost Monitor</h1>
-        <p className="text-sm text-gray-500">Active boost campaigns across the platform</p>
+        <h1 className="text-2xl font-bold text-neutral-900">Boost Monitor</h1>
+        <p className="text-sm text-neutral-500">Active boost campaigns across the platform</p>
       </div>
 
       {(isError || !data) && (
@@ -58,14 +58,14 @@ export default function BoostsPage() {
           </CardHeader>
           <CardContent className="p-0">
             {data.items.length === 0 ? (
-              <div className="flex h-40 items-center justify-center text-sm text-gray-500">
+              <div className="flex h-40 items-center justify-center text-sm text-neutral-500">
                 No active boosts
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                    <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                       <th className="px-4 py-3">Property</th>
                       <th className="px-4 py-3">Placement</th>
                       <th className="px-4 py-3">Starts</th>
@@ -73,25 +73,25 @@ export default function BoostsPage() {
                       <th className="px-4 py-3">Amount Paid</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
+                  <tbody className="divide-y divide-neutral-100">
                     {data.items.map((boost) => (
-                      <tr key={boost.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-3 font-medium text-gray-900">
+                      <tr key={boost.id} className="hover:bg-neutral-50">
+                        <td className="px-4 py-3 font-medium text-neutral-900">
                           #{boost.property_id}
                           {boost.property_title && (
-                            <span className="ml-1 text-gray-500">— {boost.property_title}</span>
+                            <span className="ml-1 text-neutral-500">— {boost.property_title}</span>
                           )}
                         </td>
                         <td className="px-4 py-3">
                           <Badge variant="secondary">{boost.placement_type}</Badge>
                         </td>
-                        <td className="px-4 py-3 text-gray-600">
+                        <td className="px-4 py-3 text-neutral-600">
                           {format(new Date(boost.starts_at), "MMM d, yyyy")}
                         </td>
-                        <td className="px-4 py-3 text-gray-600">
+                        <td className="px-4 py-3 text-neutral-600">
                           {format(new Date(boost.ends_at), "MMM d, yyyy")}
                         </td>
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-neutral-700">
                           {boost.amount_paid.toLocaleString()} {boost.currency}
                         </td>
                       </tr>

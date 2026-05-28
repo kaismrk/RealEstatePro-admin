@@ -38,7 +38,7 @@ const LEVEL_LABELS: Record<RegionLevel, string> = {
 };
 
 const LEVEL_COLORS: Record<RegionLevel, string> = {
-  country: "bg-blue-100 text-blue-700",
+  country: "bg-primary-50 text-primary-700",
   region: "bg-purple-100 text-purple-700",
   department: "bg-green-100 text-green-700",
   city: "bg-orange-100 text-orange-700",
@@ -126,8 +126,8 @@ export default function RegionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Geo Regions</h1>
-          <p className="text-sm text-gray-500">{data?.total ?? 0} regions</p>
+          <h1 className="text-2xl font-bold text-neutral-900">Geo Regions</h1>
+          <p className="text-sm text-neutral-500">{data?.total ?? 0} regions</p>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -155,7 +155,7 @@ export default function RegionsPage() {
       {/* Filters */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <Label className="text-sm text-gray-600">Country:</Label>
+          <Label className="text-sm text-neutral-600">Country:</Label>
           <Input
             value={countryFilter}
             onChange={(e) => setCountryFilter(e.target.value.toUpperCase())}
@@ -165,7 +165,7 @@ export default function RegionsPage() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Label className="text-sm text-gray-600">Level:</Label>
+          <Label className="text-sm text-neutral-600">Level:</Label>
           <Select value={levelFilter} onValueChange={setLevelFilter}>
             <SelectTrigger className="w-36">
               <SelectValue placeholder="All levels" />
@@ -183,7 +183,7 @@ export default function RegionsPage() {
           variant="ghost"
           size="sm"
           onClick={() => { setCountryFilter(""); setLevelFilter(""); setParentIdFilter(undefined); }}
-          className="text-gray-500"
+          className="text-neutral-500"
         >
           Clear filters
         </Button>
@@ -197,7 +197,7 @@ export default function RegionsPage() {
           {isLoading ? (
             <div className="space-y-2 p-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="h-10 animate-pulse rounded bg-gray-100" />
+                <div key={i} className="h-10 animate-pulse rounded bg-neutral-100" />
               ))}
             </div>
           ) : isError ? (
@@ -207,14 +207,14 @@ export default function RegionsPage() {
               </div>
             </div>
           ) : data?.items.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-40 items-center justify-center text-sm text-neutral-500">
               No regions found. Use &quot;Seed Tunisia&quot; to bootstrap the hierarchy.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Level</th>
                     <th className="px-4 py-3">Code</th>
@@ -223,15 +223,15 @@ export default function RegionsPage() {
                     <th className="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-neutral-100">
                   {data?.items.map((region: AdminRegion) => (
-                    <tr key={region.id} className="hover:bg-gray-50">
+                    <tr key={region.id} className="hover:bg-neutral-50">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
                           {region.parent_id && (
-                            <ChevronRight className="h-3.5 w-3.5 text-gray-300" />
+                            <ChevronRight className="h-3.5 w-3.5 text-neutral-300" />
                           )}
-                          <span className="font-medium text-gray-900">{region.name}</span>
+                          <span className="font-medium text-neutral-900">{region.name}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3">
@@ -243,15 +243,15 @@ export default function RegionsPage() {
                           {LEVEL_LABELS[region.level]}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{region.code ?? "—"}</td>
+                      <td className="px-4 py-3 text-neutral-600">{region.code ?? "—"}</td>
                       <td className="px-4 py-3">
                         <Badge variant="outline">{region.country_code}</Badge>
                       </td>
-                      <td className="px-4 py-3 text-gray-500">
+                      <td className="px-4 py-3 text-neutral-500">
                         {region.parent_id ? (
                           <button
                             onClick={() => setParentIdFilter(region.parent_id ?? undefined)}
-                            className="text-blue-600 hover:underline"
+                            className="text-primary-500 hover:underline"
                           >
                             #{region.parent_id}
                           </button>
@@ -358,7 +358,7 @@ export default function RegionsPage() {
               <Label>Code (optional)</Label>
               <Input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value })} />
             </div>
-            <p className="text-xs text-gray-500">Level and country code cannot be changed.</p>
+            <p className="text-xs text-neutral-500">Level and country code cannot be changed.</p>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setEditRegion(null)}>Cancel</Button>
@@ -375,7 +375,7 @@ export default function RegionsPage() {
           <DialogHeader>
             <DialogTitle>Delete Region</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             Are you sure you want to delete <strong>{deleteConfirm?.name}</strong>? This will fail if the region has children.
           </p>
           <DialogFooter>

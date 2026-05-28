@@ -45,10 +45,10 @@ export default function SubscriptionPlansPage() {
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Subscription Plans</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Subscription Plans</h1>
         <div className="animate-pulse space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-14 rounded bg-gray-100" />
+            <div key={i} className="h-14 rounded bg-neutral-100" />
           ))}
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function SubscriptionPlansPage() {
   if (isError) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Subscription Plans</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Subscription Plans</h1>
         <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
           Failed to load plans. Check your permissions (requires billing:manage).
         </div>
@@ -70,8 +70,8 @@ export default function SubscriptionPlansPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Subscription Plans</h1>
-          <p className="text-sm text-gray-500">{data?.total ?? 0} plans total</p>
+          <h1 className="text-2xl font-bold text-neutral-900">Subscription Plans</h1>
+          <p className="text-sm text-neutral-500">{data?.total ?? 0} plans total</p>
         </div>
         <Button onClick={() => setShowCreateDialog(true)} className="gap-2">
           <Plus className="h-4 w-4" />
@@ -85,14 +85,14 @@ export default function SubscriptionPlansPage() {
         </CardHeader>
         <CardContent className="p-0">
           {data?.items.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-40 items-center justify-center text-sm text-neutral-500">
               No subscription plans yet. Create one to get started.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Price</th>
                     <th className="px-4 py-3">Billing</th>
@@ -103,17 +103,17 @@ export default function SubscriptionPlansPage() {
                     <th className="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-neutral-100">
                   {data?.items.map((plan: SubscriptionPlan) => (
-                    <tr key={plan.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-gray-900">{plan.name}</td>
-                      <td className="px-4 py-3 text-gray-700">
+                    <tr key={plan.id} className="hover:bg-neutral-50">
+                      <td className="px-4 py-3 font-medium text-neutral-900">{plan.name}</td>
+                      <td className="px-4 py-3 text-neutral-700">
                         ${plan.price.toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 capitalize text-gray-600">
+                      <td className="px-4 py-3 capitalize text-neutral-600">
                         {plan.billing_cycle}
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{plan.listing_limit}</td>
+                      <td className="px-4 py-3 text-neutral-600">{plan.listing_limit}</td>
                       <td className="px-4 py-3">
                         <Badge variant="outline">{plan.country_code}</Badge>
                       </td>
@@ -124,7 +124,7 @@ export default function SubscriptionPlansPage() {
                           <Badge variant="secondary">Inactive</Badge>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-gray-500">
+                      <td className="px-4 py-3 text-neutral-500">
                         {format(new Date(plan.created_at), "MMM d, yyyy")}
                       </td>
                       <td className="px-4 py-3">

@@ -20,24 +20,24 @@ export function Topbar() {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
+    <header className="flex h-16 items-center justify-between border-b border-neutral-200 bg-white px-6">
       <div />
 
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2 text-sm text-gray-700">
-          <User className="h-4 w-4 text-gray-400" />
+        <div className="flex items-center gap-2 text-sm text-neutral-700">
+          <User className="h-4 w-4 text-neutral-400" />
           <span className="font-medium">{displayName}</span>
           {admin && (
-            <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
+            <span className="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-semibold text-primary-700">
               {roleLabel[admin.admin_role] ?? admin.admin_role}
             </span>
           )}
           {admin?.country_code && (
-            <span className="text-xs text-gray-400">[{admin.country_code}]</span>
+            <span className="text-xs text-neutral-400">[{admin.country_code}]</span>
           )}
         </div>
 
-        <Button variant="ghost" size="sm" onClick={logout} className="gap-2 text-gray-600">
+        <Button variant="ghost" size="sm" onClick={logout} className="gap-2 text-neutral-600">
           <LogOut className="h-4 w-4" />
           Sign out
         </Button>

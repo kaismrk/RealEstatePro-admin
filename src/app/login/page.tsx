@@ -40,53 +40,68 @@ export default function LoginPage() {
   })();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
       <div className="w-full max-w-md">
-        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-          <div className="mb-6 text-center">
-            <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
-            <p className="mt-1 text-sm text-gray-500">RealEstatePro Platform Administration</p>
+        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+          {/* Brand hero strip */}
+          <div className="flex flex-col items-center gap-3 bg-brand-gradient px-8 pt-10 pb-8 text-white">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
+              <span className="font-display text-3xl font-extrabold leading-none">H</span>
+            </div>
+            <div className="text-center">
+              <h1 className="font-display text-2xl font-extrabold tracking-tight">homy</h1>
+              <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
+                Admin
+              </p>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit((v) => login(v))} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                autoComplete="email"
-                placeholder="admin@example.com"
-                {...register("email")}
-              />
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
+          <div className="p-8">
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-neutral-900">Sign in</h2>
+              <p className="mt-1 text-sm text-neutral-500">Homy platform administration</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="Your password"
-                {...register("password")}
-              />
-              {errors.password && (
-                <p className="text-sm text-red-600">{errors.password.message}</p>
-              )}
-            </div>
-
-            {errorMessage && (
-              <div className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
-                {errorMessage}
+            <form onSubmit={handleSubmit((v) => login(v))} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="admin@example.com"
+                  {...register("email")}
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-600">{errors.email.message}</p>
+                )}
               </div>
-            )}
 
-            <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? "Signing in..." : "Sign in"}
-            </Button>
-          </form>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Your password"
+                  {...register("password")}
+                />
+                {errors.password && (
+                  <p className="text-sm text-red-600">{errors.password.message}</p>
+                )}
+              </div>
+
+              {errorMessage && (
+                <div className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {errorMessage}
+                </div>
+              )}
+
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? "Signing in..." : "Sign in"}
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -43,10 +43,10 @@ export default function PendingListingsPage() {
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Pending Listings</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Pending Listings</h1>
         <div className="animate-pulse space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-16 rounded bg-gray-100" />
+            <div key={i} className="h-16 rounded bg-neutral-100" />
           ))}
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function PendingListingsPage() {
   if (isError) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold text-gray-900">Pending Listings</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Pending Listings</h1>
         <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
           Failed to load pending listings. Check your permissions.
         </div>
@@ -68,8 +68,8 @@ export default function PendingListingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Pending Listings</h1>
-          <p className="text-sm text-gray-500">{data?.total ?? 0} listings awaiting review</p>
+          <h1 className="text-2xl font-bold text-neutral-900">Pending Listings</h1>
+          <p className="text-sm text-neutral-500">{data?.total ?? 0} listings awaiting review</p>
         </div>
       </div>
 
@@ -79,14 +79,14 @@ export default function PendingListingsPage() {
         </CardHeader>
         <CardContent className="p-0">
           {data?.items.length === 0 ? (
-            <div className="flex h-40 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-40 items-center justify-center text-sm text-neutral-500">
               No listings pending review
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                     <th className="px-4 py-3">Title</th>
                     <th className="px-4 py-3">Type</th>
                     <th className="px-4 py-3">City</th>
@@ -95,14 +95,14 @@ export default function PendingListingsPage() {
                     <th className="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-neutral-100">
                   {data?.items.map((listing: PropertyItem) => (
-                    <tr key={listing.id} className="hover:bg-gray-50">
+                    <tr key={listing.id} className="hover:bg-neutral-50">
                       <td className="px-4 py-3">
                         <div className="max-w-xs">
-                          <p className="font-medium text-gray-900 truncate">{listing.title}</p>
+                          <p className="font-medium text-neutral-900 truncate">{listing.title}</p>
                           {listing.price && (
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-neutral-500">
                               {listing.price.toLocaleString()} {listing.currency}
                             </p>
                           )}
@@ -111,9 +111,9 @@ export default function PendingListingsPage() {
                       <td className="px-4 py-3">
                         <Badge variant="secondary">{listing.listing_type}</Badge>
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{listing.city ?? "—"}</td>
-                      <td className="px-4 py-3 text-gray-600">{listing.country_code}</td>
-                      <td className="px-4 py-3 text-gray-500">
+                      <td className="px-4 py-3 text-neutral-600">{listing.city ?? "—"}</td>
+                      <td className="px-4 py-3 text-neutral-600">{listing.country_code}</td>
+                      <td className="px-4 py-3 text-neutral-500">
                         {format(new Date(listing.created_at), "MMM d, yyyy")}
                       </td>
                       <td className="px-4 py-3">
@@ -154,7 +154,7 @@ export default function PendingListingsPage() {
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Page {page} of {totalPages}
           </p>
           <div className="flex gap-2">

@@ -3,8 +3,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "RealEstatePro Admin",
-  description: "Platform administration panel",
+  title: "Homy Admin",
+  description: "Homy platform administration panel",
 };
 
 export default function RootLayout({

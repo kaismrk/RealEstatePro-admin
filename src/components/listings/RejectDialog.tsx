@@ -52,10 +52,10 @@ export function RejectDialog({
         </DialogHeader>
 
         <div className="space-y-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             You are rejecting: <span className="font-medium">{listingTitle}</span>
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             The owner will receive an email with the rejection reason.
           </p>
 
@@ -67,7 +67,7 @@ export function RejectDialog({
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               placeholder="Explain why this listing is being rejected..."
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             />
             {error && <p className="text-sm text-red-600">{error}</p>}
           </div>

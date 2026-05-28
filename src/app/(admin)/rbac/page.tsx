@@ -66,8 +66,8 @@ export default function RbacPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">RBAC & Audit Log</h1>
-        <p className="text-sm text-gray-500">Manage admin accounts and view the audit trail</p>
+        <h1 className="text-2xl font-bold text-neutral-900">RBAC & Audit Log</h1>
+        <p className="text-sm text-neutral-500">Manage admin accounts and view the audit trail</p>
       </div>
 
       {/* Admin accounts */}
@@ -79,18 +79,18 @@ export default function RbacPage() {
           {adminsLoading ? (
             <div className="space-y-2 p-4">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="h-12 animate-pulse rounded bg-gray-100" />
+                <div key={i} className="h-12 animate-pulse rounded bg-neutral-100" />
               ))}
             </div>
           ) : (admins?.length ?? 0) === 0 ? (
-            <div className="flex h-32 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-32 items-center justify-center text-sm text-neutral-500">
               No admin accounts found
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                  <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                     <th className="px-4 py-3">Email</th>
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Role</th>
@@ -100,20 +100,20 @@ export default function RbacPage() {
                     <th className="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-neutral-100">
                   {admins?.map((acct: AdminAccount) => (
-                    <tr key={acct.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 font-medium text-gray-900">{acct.user_email}</td>
-                      <td className="px-4 py-3 text-gray-600">
+                    <tr key={acct.id} className="hover:bg-neutral-50">
+                      <td className="px-4 py-3 font-medium text-neutral-900">{acct.user_email}</td>
+                      <td className="px-4 py-3 text-neutral-600">
                         {[acct.user_first_name, acct.user_last_name].filter(Boolean).join(" ") || "—"}
                       </td>
                       <td className="px-4 py-3"><RoleBadge role={acct.admin_role} /></td>
-                      <td className="px-4 py-3 text-gray-600">{acct.admin_scope}</td>
+                      <td className="px-4 py-3 text-neutral-600">{acct.admin_scope}</td>
                       <td className="px-4 py-3">
                         {acct.country_code ? (
                           <Badge variant="outline">{acct.country_code}</Badge>
                         ) : (
-                          <span className="text-gray-400">Global</span>
+                          <span className="text-neutral-400">Global</span>
                         )}
                       </td>
                       <td className="px-4 py-3">
@@ -166,7 +166,7 @@ export default function RbacPage() {
             <CardTitle>Audit Log</CardTitle>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <Label className="text-sm text-gray-500">Filter by action:</Label>
+                <Label className="text-sm text-neutral-500">Filter by action:</Label>
                 <Input
                   value={auditAction}
                   onChange={(e) => { setAuditAction(e.target.value); setAuditOffset(0); }}
@@ -181,11 +181,11 @@ export default function RbacPage() {
           {auditLoading ? (
             <div className="space-y-2 p-4">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="h-10 animate-pulse rounded bg-gray-100" />
+                <div key={i} className="h-10 animate-pulse rounded bg-neutral-100" />
               ))}
             </div>
           ) : (auditLogs?.length ?? 0) === 0 ? (
-            <div className="flex h-32 items-center justify-center text-sm text-gray-500">
+            <div className="flex h-32 items-center justify-center text-sm text-neutral-500">
               No audit log entries found
             </div>
           ) : (
@@ -193,7 +193,7 @@ export default function RbacPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-gray-100 bg-gray-50 text-left text-xs font-medium uppercase tracking-wide text-gray-500">
+                    <tr className="border-b border-neutral-100 bg-neutral-50 text-left text-xs font-medium uppercase tracking-wide text-neutral-500">
                       <th className="px-4 py-3">Timestamp</th>
                       <th className="px-4 py-3">Admin</th>
                       <th className="px-4 py-3">Action</th>
@@ -201,26 +201,26 @@ export default function RbacPage() {
                       <th className="px-4 py-3">Country</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
+                  <tbody className="divide-y divide-neutral-100">
                     {auditLogs?.map((log: AuditLog) => (
-                      <tr key={log.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
+                      <tr key={log.id} className="hover:bg-neutral-50">
+                        <td className="px-4 py-3 text-neutral-500 whitespace-nowrap">
                           {format(new Date(log.timestamp), "MMM d, HH:mm:ss")}
                         </td>
-                        <td className="px-4 py-3 text-gray-700">Admin #{log.admin_user_id}</td>
+                        <td className="px-4 py-3 text-neutral-700">Admin #{log.admin_user_id}</td>
                         <td className="px-4 py-3">
-                          <code className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-800">
+                          <code className="rounded bg-neutral-100 px-1.5 py-0.5 text-xs text-neutral-800">
                             {log.action}
                           </code>
                         </td>
-                        <td className="px-4 py-3 text-gray-600">
+                        <td className="px-4 py-3 text-neutral-600">
                           {log.target_type} {log.target_id ? `#${log.target_id}` : ""}
                         </td>
                         <td className="px-4 py-3">
                           {log.country_code ? (
                             <Badge variant="outline">{log.country_code}</Badge>
                           ) : (
-                            <span className="text-gray-400">—</span>
+                            <span className="text-neutral-400">—</span>
                           )}
                         </td>
                       </tr>
@@ -230,8 +230,8 @@ export default function RbacPage() {
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-between border-t border-gray-100 px-4 py-3">
-                <p className="text-xs text-gray-500">
+              <div className="flex items-center justify-between border-t border-neutral-100 px-4 py-3">
+                <p className="text-xs text-neutral-500">
                   Showing {auditOffset + 1}–{auditOffset + (auditLogs?.length ?? 0)}
                 </p>
                 <div className="flex gap-2">

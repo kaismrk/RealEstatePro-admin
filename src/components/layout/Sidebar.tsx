@@ -36,9 +36,18 @@ export function Sidebar() {
   );
 
   return (
-    <aside className="flex h-full w-60 flex-col border-r border-gray-200 bg-gray-50">
-      <div className="flex h-16 items-center border-b border-gray-200 px-6">
-        <span className="text-lg font-bold text-gray-900">RealEstate Admin</span>
+    <aside className="flex h-full w-60 flex-col border-r border-neutral-200 bg-white">
+      {/* Brand strip */}
+      <div className="h-1 bg-brand-gradient" />
+
+      <div className="flex h-16 items-center gap-3 border-b border-neutral-200 px-5">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-brand">
+          <span className="font-display text-lg font-extrabold leading-none">H</span>
+        </div>
+        <div className="leading-tight">
+          <div className="font-display text-base font-extrabold tracking-tight text-neutral-900">homy</div>
+          <div className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">Admin</div>
+        </div>
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4">
@@ -53,8 +62,8 @@ export function Sidebar() {
                   className={cn(
                     "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-blue-600 text-white"
-                      : "text-gray-700 hover:bg-gray-200 hover:text-gray-900"
+                      ? "bg-primary-500 text-white shadow-sm"
+                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
                   )}
                 >
                   <Icon className="h-4 w-4 shrink-0" />
