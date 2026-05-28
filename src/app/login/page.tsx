@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -44,16 +45,18 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
           {/* Brand hero strip */}
-          <div className="flex flex-col items-center gap-3 bg-brand-gradient px-8 pt-10 pb-8 text-white">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm">
-              <span className="font-display text-3xl font-extrabold leading-none">H</span>
-            </div>
-            <div className="text-center">
-              <h1 className="font-display text-2xl font-extrabold tracking-tight">homy</h1>
-              <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
-                Admin
-              </p>
-            </div>
+          <div className="flex flex-col items-center gap-2 bg-brand-gradient px-8 pt-12 pb-10 text-white">
+            <Image
+              src="/homy-logo-white.png"
+              alt="homy"
+              width={180}
+              height={60}
+              priority
+              className="h-12 w-auto"
+            />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/85">
+              Admin
+            </p>
           </div>
 
           <div className="p-8">

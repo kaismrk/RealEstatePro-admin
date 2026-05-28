@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -41,13 +42,17 @@ export function Sidebar() {
       <div className="h-1 bg-brand-gradient" />
 
       <div className="flex h-16 items-center gap-3 border-b border-neutral-200 px-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-brand">
-          <span className="font-display text-lg font-extrabold leading-none">H</span>
-        </div>
-        <div className="leading-tight">
-          <div className="font-display text-base font-extrabold tracking-tight text-neutral-900">homy</div>
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">Admin</div>
-        </div>
+        <Image
+          src="/homy-logo-violet.png"
+          alt="homy"
+          width={96}
+          height={32}
+          priority
+          className="h-7 w-auto"
+        />
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">
+          Admin
+        </span>
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4">
