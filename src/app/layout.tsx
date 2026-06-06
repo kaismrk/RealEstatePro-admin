@@ -3,8 +3,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Homy Admin",
-  description: "Homy platform administration panel",
+  title: "Hovioo Admin",
+  description: "Hovioo platform administration panel",
 };
 
 export default function RootLayout({

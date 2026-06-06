@@ -43,8 +43,8 @@ export function Sidebar() {
 
       <div className="flex h-16 items-center gap-3 border-b border-neutral-200 px-5">
         <Image
-          src="/homy-logo-violet.png"
-          alt="homy"
+          src="/hovioo-logo-violet.png"
+          alt="hovioo"
           width={96}
           height={32}
           priority

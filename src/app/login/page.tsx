@@ -47,8 +47,8 @@ export default function LoginPage() {
           {/* Brand hero strip */}
           <div className="flex flex-col items-center gap-2 bg-brand-gradient px-8 pt-12 pb-10 text-white">
             <Image
-              src="/homy-logo-white.png"
-              alt="homy"
+              src="/hovioo-logo-white.png"
+              alt="hovioo"
               width={180}
               height={60}
               priority
@@ -62,7 +62,7 @@ export default function LoginPage() {
           <div className="p-8">
             <div className="mb-6">
               <h2 className="text-lg font-semibold text-neutral-900">Sign in</h2>
-              <p className="mt-1 text-sm text-neutral-500">Homy platform administration</p>
+              <p className="mt-1 text-sm text-neutral-500">Hovioo platform administration</p>
             </div>
 
             <form onSubmit={handleSubmit((v) => login(v))} className="space-y-4">
