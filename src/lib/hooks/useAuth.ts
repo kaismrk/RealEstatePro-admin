@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { adminApi } from "@/lib/api";
 import { useAuthStore } from "@/lib/stores/auth";
 import type { AdminMe } from "@/lib/types";
 
@@ -16,17 +15,28 @@ export function useLogin() {
       email: string;
       password: string;
     }) => {
-      // Step 1: get token
-      const tokenRes = await adminApi.login(email, password);
-      const token = tokenRes.data.access_token;
-      setToken(token);
+      // POST to the Next.js /api/auth route — it calls FastAPI, verifies
+      // admin identity, AND sets the httpOnly admin_token cookie that the
+      // middleware checks. Hitting the FastAPI backend directly works for
+      // the token but leaves the cookie unset → middleware bounces every
+      // navigation back to /login.
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Step 2: verify admin identity
-      const meRes = await adminApi.getMe();
-      const admin = meRes.data as AdminMe;
-      if (!admin.is_admin_active) {
-        throw new Error("Admin account is deactivated");
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { detail?: string };
+        throw new Error(body.detail ?? `Login failed (HTTP ${res.status})`);
       }
+
+      const { admin, token } = (await res.json()) as {
+        admin: AdminMe;
+        token: string;
+      };
+
+      setToken(token);
       setAdmin(admin);
       return admin;
     },
@@ -41,6 +51,9 @@ export function useLogout() {
   const { clearAuth } = useAuthStore();
 
   return () => {
+    // Clear server-side cookie too (in addition to client-side Zustand state),
+    // otherwise the middleware still considers the user logged in.
+    void fetch("/api/auth", { method: "DELETE" });
     clearAuth();
     router.push("/login");
   };
