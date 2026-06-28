@@ -12,12 +12,16 @@ import {
   MapPin,
   Zap,
   ShieldCheck,
+  UserCheck,
+  Database,
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { useAuthStore } from "@/lib/stores/auth";
 
 const ALL_NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, permission: null },
+  { href: "/professional-signups", label: "Pro. Signups", icon: UserCheck, permission: "prospect:manage" },
+  { href: "/prospects", label: "Prospect Directory", icon: Database, permission: "prospect:read" },
   { href: "/listings/pending", label: "Pending Listings", icon: ListChecks, permission: "listing:review" },
   { href: "/users", label: "Users", icon: Users, permission: "user:read" },
   { href: "/subscriptions", label: "Subscription Plans", icon: CreditCard, permission: "billing:manage" },

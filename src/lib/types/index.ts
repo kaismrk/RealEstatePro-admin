@@ -235,3 +235,90 @@ export interface UserItem {
   is_verified: boolean;
   created_at: string;
 }
+
+// ── Professional signups (Phase 20) ──────────────────────────────────────────
+
+export type SignupStatus = "pending" | "activated" | "rejected" | "duplicate";
+export type SignupType = "agent" | "agency" | "promoter";
+
+export interface ProfessionalSignup {
+  id: number;
+  country_code: string;
+  type: SignupType;
+  status: SignupStatus;
+  prospect_id: number | null;
+  email: string;
+  profile: Record<string, string>;
+  notes: string | null;
+  created_user_id: number | null;
+  created_agency_id: number | null;
+  created_agent_id: number | null;
+  activated_by_admin_id: number | null;
+  activated_at: string | null;
+  rejected_reason: string | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProfessionalSignupList {
+  items: ProfessionalSignup[];
+  total: number;
+  page: number;
+  size: number;
+}
+
+export interface ProfessionalSignupStats {
+  pending: number;
+  activated: number;
+  rejected: number;
+  activated_by_type: Record<SignupType, number>;
+  pending_by_type: Record<SignupType, number>;
+}
+
+// ── Real-estate prospects (Phase 18) ─────────────────────────────────────────
+
+export type ProspectType = "agent" | "agency" | "developer_licensed" | "developer" | "promoter";
+export type ProspectStatus = "unclaimed" | "pending_verification" | "claimed" | "dismissed" | "merged";
+
+export interface RealEstateProspect {
+  id: number;
+  country_code: string;
+  type: ProspectType;
+  origin: string;
+  status: ProspectStatus;
+  name: string;
+  normalized_name: string;
+  governorate: string | null;
+  city: string | null;
+  region_id: number | null;
+  phones: string[];
+  email: string | null;
+  website: string | null;
+  mubawab_url: string | null;
+  mubawab_customer: string | null;
+  source_url: string | null;
+  external_refs: Record<string, unknown>;
+  notes: string | null;
+  claimed_by_agency_id: number | null;
+  claimed_by_user_id: number | null;
+  claimed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProspectList {
+  items: RealEstateProspect[];
+  total: number;
+  page: number;
+  size: number;
+}
+
+export interface ProspectStats {
+  total: number;
+  by_status: Partial<Record<ProspectStatus, number>>;
+  by_type: Partial<Record<ProspectType, number>>;
+  subscribed_count: number;
+  subscribed_pct: number;
+}

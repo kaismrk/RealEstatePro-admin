@@ -149,4 +149,64 @@ export const adminApi = {
     if (params?.search) qs.set("search", params.search);
     return apiClient.get(`/users/?${qs.toString()}`);
   },
+
+  // Professional signups (Phase 20) — landing-page applications waiting for
+  // credential review + activation
+  getProfessionalSignupStats: (countryCode?: string) =>
+    apiClient.get(
+      `/admin/professional-signups/stats${countryCode ? `?country_code=${countryCode}` : ""}`
+    ),
+  getProfessionalSignups: (params?: {
+    country_code?: string;
+    status?: string;
+    type?: string;
+    page?: number;
+    size?: number;
+  }) => {
+    const qs = new URLSearchParams();
+    if (params?.country_code) qs.set("country_code", params.country_code);
+    if (params?.status) qs.set("status", params.status);
+    if (params?.type) qs.set("type", params.type);
+    if (params?.page) qs.set("page", String(params.page));
+    if (params?.size) qs.set("size", String(params.size));
+    return apiClient.get(`/admin/professional-signups/?${qs.toString()}`);
+  },
+  getProfessionalSignup: (id: number) =>
+    apiClient.get(`/admin/professional-signups/${id}`),
+  activateProfessionalSignup: (id: number) =>
+    apiClient.post(`/admin/professional-signups/${id}/activate`),
+  rejectProfessionalSignup: (id: number, reason: string) =>
+    apiClient.post(`/admin/professional-signups/${id}/reject`, { reason }),
+
+  // Real-estate prospect directory (Phase 18) — pre-loaded agencies +
+  // developers that show up in the public Partner Profile Setup wizard
+  getProspectStats: (countryCode?: string) =>
+    apiClient.get(
+      `/admin/prospects/stats${countryCode ? `?country_code=${countryCode}` : ""}`
+    ),
+  getProspects: (params?: {
+    country_code?: string;
+    type?: string;
+    status?: string;
+    governorate?: string;
+    claimed?: boolean;
+    search?: string;
+    page?: number;
+    size?: number;
+  }) => {
+    const qs = new URLSearchParams();
+    if (params?.country_code) qs.set("country_code", params.country_code);
+    if (params?.type) qs.set("type", params.type);
+    if (params?.status) qs.set("status", params.status);
+    if (params?.governorate) qs.set("governorate", params.governorate);
+    if (params?.claimed !== undefined) qs.set("claimed", String(params.claimed));
+    if (params?.search) qs.set("search", params.search);
+    if (params?.page) qs.set("page", String(params.page));
+    if (params?.size) qs.set("size", String(params.size));
+    return apiClient.get(`/admin/prospects/?${qs.toString()}`);
+  },
+  getProspect: (id: number) => apiClient.get(`/admin/prospects/${id}`),
+  updateProspect: (id: number, payload: unknown) =>
+    apiClient.patch(`/admin/prospects/${id}`, payload),
+  deleteProspect: (id: number) => apiClient.delete(`/admin/prospects/${id}`),
 };
