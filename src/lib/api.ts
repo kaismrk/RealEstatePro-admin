@@ -209,4 +209,43 @@ export const adminApi = {
   updateProspect: (id: number, payload: unknown) =>
     apiClient.patch(`/admin/prospects/${id}`, payload),
   deleteProspect: (id: number) => apiClient.delete(`/admin/prospects/${id}`),
+
+  // In-feed ad campaigns (Phase ads-b-admin) — sponsored placements in the
+  // mobile search feed, admin-managed with offline invoicing
+  getAdCampaigns: (params?: {
+    country_code?: string;
+    status?: string;
+    page?: number;
+    size?: number;
+  }) => {
+    const qs = new URLSearchParams();
+    if (params?.country_code) qs.set("country_code", params.country_code);
+    if (params?.status) qs.set("status", params.status);
+    if (params?.page) qs.set("page", String(params.page));
+    if (params?.size) qs.set("size", String(params.size));
+    return apiClient.get(`/admin/ads?${qs.toString()}`);
+  },
+  createAdCampaign: (payload: unknown) => apiClient.post("/admin/ads", payload),
+  updateAdCampaign: (id: number, payload: unknown) =>
+    apiClient.patch(`/admin/ads/${id}`, payload),
+  deleteAdCampaign: (id: number) => apiClient.delete(`/admin/ads/${id}`),
+  getAdSettings: () => apiClient.get("/admin/ads/settings"),
+  updateAdSettings: (payload: unknown) =>
+    apiClient.put("/admin/ads/settings", payload),
+  uploadAdMedia: (
+    id: number,
+    formData: FormData,
+    onUploadProgress?: (percent: number) => void
+  ) =>
+    apiClient.post(`/admin/ads/${id}/media`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      onUploadProgress: (e) => {
+        if (onUploadProgress && e.total) {
+          onUploadProgress(Math.round((e.loaded / e.total) * 100));
+        }
+      },
+    }),
+  getAdStats: (id: number) => apiClient.get(`/admin/ads/${id}/stats`),
+  downloadAdStatsCsv: (id: number) =>
+    apiClient.get(`/admin/ads/${id}/stats?format=csv`, { responseType: "blob" }),
 };

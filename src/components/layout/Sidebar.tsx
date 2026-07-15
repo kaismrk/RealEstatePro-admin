@@ -11,6 +11,7 @@ import {
   Package,
   MapPin,
   Zap,
+  Megaphone,
   ShieldCheck,
   UserCheck,
   Database,
@@ -27,6 +28,7 @@ const ALL_NAV_ITEMS = [
   { href: "/subscriptions", label: "Subscription Plans", icon: CreditCard, permission: "billing:manage" },
   { href: "/packs", label: "Listing Packs", icon: Package, permission: "billing:manage" },
   { href: "/boosts", label: "Boosts", icon: Zap, permission: "listing:review" },
+  { href: "/ads", label: "Ads", icon: Megaphone, permission: "ad:manage" },
   { href: "/regions", label: "Geo Regions", icon: MapPin, permission: "region:manage" },
   { href: "/rbac", label: "RBAC & Audit", icon: ShieldCheck, permission: "admin:read" },
 ];

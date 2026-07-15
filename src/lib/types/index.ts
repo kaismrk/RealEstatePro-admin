@@ -322,3 +322,123 @@ export interface ProspectStats {
   subscribed_count: number;
   subscribed_pct: number;
 }
+
+// ── In-feed ad campaigns (Phase ads-b-admin) ─────────────────────────────────
+
+export type AdvertiserType = "external" | "pro";
+export type AdMediaType = "image" | "video";
+export type AdCtaAction = "web" | "whatsapp" | "phone" | "internal";
+export type AdCampaignStatus = "draft" | "active" | "paused" | "ended";
+
+export interface AdCampaign {
+  id: number;
+  name: string;
+  advertiser_type: AdvertiserType;
+  advertiser_name: string;
+  advertiser_user_id: number | null;
+  media_type: AdMediaType;
+  media_url: string | null;
+  thumbnail_url: string | null;
+  title: string;
+  body: string | null;
+  cta_label: string | null;
+  cta_action: AdCtaAction | null;
+  cta_value: string | null;
+  status: AdCampaignStatus;
+  display_order: number;
+  country_code: string;
+  target_governorate: string | null;
+  target_property_type: string | null;
+  target_transaction_type: string | null;
+  start_year: number;
+  start_week: number;
+  end_year: number;
+  end_week: number;
+  starts_at: string;
+  ends_at: string;
+  max_impressions: number | null;
+  created_by: number | null;
+  created_at: string;
+  // Computed by the list endpoint
+  impressions: number;
+  clicks: number;
+}
+
+export interface AdCampaignList {
+  total: number;
+  items: AdCampaign[];
+  // Active campaign count per governorate — UI shows a soft share-of-voice
+  // warning when a governorate has > 5 active campaigns.
+  active_per_governorate: Record<string, number>;
+}
+
+export interface AdCampaignCreate {
+  name: string;
+  advertiser_type: AdvertiserType;
+  advertiser_name: string;
+  advertiser_user_id?: number | null;
+  media_type: AdMediaType;
+  title: string;
+  body?: string | null;
+  cta_label?: string | null;
+  cta_action?: AdCtaAction | null;
+  cta_value?: string | null;
+  display_order?: number;
+  country_code?: string | null;
+  target_governorate?: string | null;
+  target_property_type?: string | null;
+  target_transaction_type?: string | null;
+  start_year: number;
+  start_week: number;
+  end_year: number;
+  end_week: number;
+  max_impressions?: number | null;
+}
+
+export interface AdCampaignUpdate extends Partial<AdCampaignCreate> {
+  status?: AdCampaignStatus;
+}
+
+export interface AdSettings {
+  country_code: string;
+  first_position: number;
+  interval: number;
+}
+
+export interface AdSettingsUpdate {
+  first_position: number;
+  interval: number;
+}
+
+export interface AdStatsTotals {
+  impressions: number;
+  unique_sessions: number;
+  clicks: number;
+  ctr: number;
+  video_q25: number;
+  video_q50: number;
+  video_q75: number;
+  video_q100: number;
+  vtr: number | null;
+}
+
+export interface AdStatsDailyPoint {
+  date: string;
+  impressions: number;
+  clicks: number;
+}
+
+export interface AdStatsWeekPoint {
+  iso_year: number;
+  iso_week: number;
+  week_label: string;
+  impressions: number;
+  clicks: number;
+}
+
+export interface AdStats {
+  campaign_id: number;
+  totals: AdStatsTotals;
+  daily: AdStatsDailyPoint[];
+  weekly: AdStatsWeekPoint[];
+}
